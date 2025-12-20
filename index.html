@@ -4,84 +4,188 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Évosia – Design for Skin Recovery</title>
-  <meta name="description" content="Premium tools for scar care and intentional skin recovery. Early access, updates, and expert guidance." />
+  <meta name="description" content="Thoughtfully designed tools to support scar care, skin recovery, and long-term confidence." />
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #F6F7F5;
-      color: #111;
+    :root{
+      --bg:#F6F7F5;
+      --text:#111;
+      --muted:#5E5E5E;
+      --accent:#8FA89A;
+      --accentHover:#7A9487;
+      --card:#FFFFFF;
+      --border:rgba(0,0,0,0.06);
     }
 
-    .container {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 120px 24px;
-      text-align: center;
+    body{
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:var(--bg);
+      color:var(--text);
     }
 
-    .logo {
-      font-weight: 600;
-      font-size: 28px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #8FA89A;
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:56px 20px 96px;
     }
 
-    h1 {
-      font-size: 44px;
-      line-height: 1.2;
-      margin: 48px 0 24px;
-      font-weight: 600;
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:40px;
     }
 
-    p {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #5E5E5E;
-      max-width: 620px;
-      margin: 0 auto 48px;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      text-decoration:none;
+      color:inherit;
     }
 
-    .cta {
-      display: inline-block;
-      padding: 16px 36px;
-      background: #8FA89A;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 500;
-      border-radius: 999px;
-      transition: background 0.2s ease, transform 0.2s ease;
+    .brand img{
+      height:36px;
+      width:auto;
+      display:block;
     }
 
-    .cta:hover {
-      background: #7A9487;
+    .brand-name{
+      font-weight:600;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      font-size:14px;
+      color:var(--accent);
+    }
+
+    .top-cta{
+      display:inline-block;
+      padding:10px 16px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      text-decoration:none;
+      color:var(--text);
+      background:rgba(255,255,255,0.6);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    h1{
+      font-size:44px;
+      line-height:1.15;
+      margin:0 0 16px;
+      font-weight:600;
+    }
+
+    p{
+      font-size:18px;
+      line-height:1.6;
+      color:var(--muted);
+      margin:0 0 22px;
+    }
+
+    .cta{
+      display:inline-block;
+      padding:14px 22px;
+      background:var(--accent);
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+      border-radius:999px;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .cta:hover{
+      background:var(--accentHover);
       transform: translateY(-1px);
     }
 
-    footer {
-      margin-top: 120px;
-      font-size: 13px;
-      color: #9A9A9A;
+    .sub{
+      margin-top:14px;
+      font-size:13px;
+      color:#8a8a8a;
+    }
+
+    .hero-media{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      background:#fff;
+      min-height:360px;
+    }
+
+    .hero-media img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    footer{
+      margin-top:72px;
+      font-size:13px;
+      color:#9A9A9A;
+      text-align:center;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px){
+      .hero{ grid-template-columns: 1fr; }
+      h1{ font-size:36px; }
+      .hero-media{ min-height:260px; }
+      header{ margin-bottom:24px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <div class="logo">Évosia</div>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="/">
+        <!-- Mets ton logo ici -->
+        <img src="assets/logo.png" alt="Évosia logo" />
+        <div class="brand-name">Évosia</div>
+      </a>
 
-    <h1>Design for Skin Recovery</h1>
+      <!-- CTA en haut (optionnel) -->
+      <a class="top-cta" href="#early-access">Early access</a>
+    </header>
 
-    <p>
-      Thoughtfully designed tools to support scar care,
-      skin recovery, and long-term confidence.
-    </p>
+    <section class="hero">
+      <div class="card">
+        <h1>Design for Skin Recovery</h1>
 
-    <a href="#" class="cta">Get early access</a>
+        <p>
+          Thoughtfully designed tools to support scar care, skin recovery,
+          and long-term confidence.
+        </p>
+
+        <a id="early-access" class="cta" href="#">Get early access</a>
+        <div class="sub">No spam. Updates only.</div>
+      </div>
+
+      <div class="hero-media" aria-label="Évosia hero image">
+        <!-- Mets ton image ici -->
+        <img src="assets/hero.jpg" alt="Évosia product and lifestyle" />
+      </div>
+    </section>
 
     <footer>
       © Évosia — All rights reserved
