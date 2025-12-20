@@ -4,32 +4,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Évosia – Design for Skin Recovery</title>
-  <meta name="description" content="Thoughtfully designed tools to support scar care, skin recovery, and long-term confidence." />
+  <meta name="description" content="Premium tools for scar care and intentional skin recovery. Early access, updates, and expert guidance." />
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#F6F7F5;
+      --panel:#F3F4F3;           /* légère variation section */
       --text:#111;
-      --muted:#5E5E5E;
-      --accent:#8FA89A;
-      --accentHover:#7A9487;
-      --card:#FFFFFF;
-      --border:rgba(0,0,0,0.06);
+      --muted:#6B6B6B;
+      --sage:#8FA89A;
+      --sageSoft: rgba(143,168,154,0.55);
+      --border:rgba(0,0,0,0.07);
+      --shadow: 0 14px 40px rgba(0,0,0,0.06);
+      --radius:22px;
+      --amazon:#F5C451;
+      --amazonHover:#EAB844;
     }
+
+    *{ box-sizing:border-box; }
 
     body{
       margin:0;
       font-family:'Inter',sans-serif;
-      background:var(--bg);
+      background: var(--bg);
       color:var(--text);
     }
 
+    /* Fond “Carrd-like” avec lignes diagonales */
+    .bg-lines{
+      position:relative;
+      overflow:hidden;
+    }
+    .bg-lines::before{
+      content:"";
+      position:absolute;
+      inset:-40px;
+      pointer-events:none;
+      opacity:0.55;
+      background:
+        linear-gradient(135deg, rgba(0,0,0,0.055) 1px, transparent 1px) 0 0/520px 520px,
+        linear-gradient(45deg,  rgba(0,0,0,0.040) 1px, transparent 1px) 0 0/560px 560px;
+      transform: rotate(0.001deg);
+    }
+
     .wrap{
-      max-width:1100px;
+      position:relative;
+      max-width:1120px;
       margin:0 auto;
-      padding:56px 20px 96px;
+      padding:54px 20px 0;
+      z-index:1;
     }
 
     header{
@@ -37,46 +62,53 @@
       align-items:center;
       justify-content:space-between;
       gap:16px;
-      margin-bottom:40px;
+      margin-bottom:44px;
     }
 
     .brand{
       display:flex;
       align-items:center;
-      gap:12px;
       text-decoration:none;
       color:inherit;
     }
-
     .brand img{
-      height:48px;
+      height:54px;
       width:auto;
       display:block;
     }
 
     .top-cta{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:10px 16px;
       border:1px solid var(--border);
       border-radius:999px;
       text-decoration:none;
       color:var(--text);
-      background:rgba(255,255,255,0.6);
+      background:rgba(255,255,255,0.55);
+      transition: transform .2s ease, background .2s ease;
+    }
+    .top-cta:hover{
+      background:rgba(255,255,255,0.75);
+      transform: translateY(-1px);
     }
 
+    /* HERO (ton bloc actuel) */
     .hero{
       display:grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap:28px;
       align-items:center;
+      padding-bottom:30px;
     }
 
     .card{
-      background:var(--card);
+      background:#fff;
       border:1px solid var(--border);
-      border-radius:18px;
-      padding:28px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border-radius:var(--radius);
+      padding:30px;
+      box-shadow: var(--shadow);
     }
 
     h1{
@@ -86,14 +118,12 @@
       font-weight:600;
     }
 
-    /* Quote under the title */
     .quote{
       margin:0 0 18px;
       font-size:16px;
       font-style:italic;
       color:#7A7A7A;
     }
-
     .quote span{
       display:block;
       margin-top:6px;
@@ -104,43 +134,45 @@
       color:#9A9A9A;
     }
 
-    p{
+    .lead{
       font-size:18px;
-      line-height:1.6;
+      line-height:1.65;
       color:var(--muted);
-      margin:0 0 22px;
+      margin:0 0 24px;
+      max-width:560px;
     }
 
     .cta{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       padding:14px 22px;
-      background:var(--accent);
+      background:var(--sage);
       color:#fff;
       text-decoration:none;
       font-weight:500;
       border-radius:999px;
+      border:1px solid rgba(0,0,0,0.04);
       transition: background .2s ease, transform .2s ease;
     }
     .cta:hover{
-      background:var(--accentHover);
+      background:rgba(122,148,135,1);
       transform: translateY(-1px);
     }
-
     .sub{
-      margin-top:14px;
+      margin-top:12px;
       font-size:13px;
       color:#8a8a8a;
     }
 
     .hero-media{
-      border-radius:18px;
+      border-radius:var(--radius);
       overflow:hidden;
       border:1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      box-shadow: var(--shadow);
       background:#fff;
-      min-height:360px;
+      min-height:380px;
     }
-
     .hero-media img{
       width:100%;
       height:100%;
@@ -148,60 +180,502 @@
       display:block;
     }
 
-    footer{
-      margin-top:72px;
-      font-size:13px;
-      color:#9A9A9A;
-      text-align:center;
+    /* Section title style Carrd (grand, sage pâle) */
+    .section{
+      padding:78px 0;
+      border-top:1px solid rgba(0,0,0,0.07);
+    }
+    .section.slim{
+      padding:62px 0;
     }
 
-    /* Mobile */
-    @media (max-width: 900px){
+    .section-head{
+      text-align:center;
+      max-width:920px;
+      margin:0 auto 34px;
+    }
+
+    .kicker{
+      font-size:13px;
+      letter-spacing:0.18em;
+      text-transform:uppercase;
+      color:rgba(0,0,0,0.35);
+      margin-bottom:10px;
+    }
+
+    .h2{
+      font-size:44px;
+      line-height:1.12;
+      margin:0 0 14px;
+      font-weight:400;
+      color: var(--sageSoft);
+    }
+
+    .section-head p{
+      margin:0 auto;
+      max-width:760px;
+      font-size:16px;
+      line-height:1.9;
+      color:rgba(0,0,0,0.55);
+    }
+
+    /* FEATURES 3 colonnes (avec descriptions) */
+    .features{
+      margin-top:44px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:0;
+      align-items:start;
+    }
+
+    .feature{
+      text-align:center;
+      padding:22px 26px 10px;
+      position:relative;
+    }
+
+    .feature:not(:last-child)::after{
+      content:"";
+      position:absolute;
+      right:0;
+      top:18px;
+      width:1px;
+      height:210px;
+      background:rgba(0,0,0,0.12);
+    }
+
+    .feature .icon{
+      width:78px;
+      height:78px;
+      margin:0 auto 18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      opacity:0.92;
+    }
+
+    .feature .icon img{
+      width:64px;
+      height:64px;
+      object-fit:contain;
+      display:block;
+    }
+
+    .feature h3{
+      margin:0;
+      font-size:22px;
+      font-weight:400;
+      color:rgba(0,0,0,0.55);
+    }
+
+    .feature p{
+      margin:16px auto 0;
+      max-width:280px;
+      font-size:15px;
+      line-height:1.85;
+      color:rgba(0,0,0,0.45);
+    }
+
+    /* Alternance image / texte (Carrd) */
+    .split{
+      display:grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap:34px;
+      align-items:center;
+    }
+
+    .split.reverse{
+      grid-template-columns: 0.95fr 1.05fr;
+    }
+
+    .big-title{
+      font-size:52px;
+      line-height:1.12;
+      margin:0 0 16px;
+      font-weight:400;
+      color: var(--sageSoft);
+    }
+
+    .copy{
+      font-size:18px;
+      line-height:1.9;
+      color:rgba(0,0,0,0.55);
+      margin:0;
+      max-width:520px;
+    }
+
+    .copy .spacer{ display:block; height:14px; }
+
+    .media-card{
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid var(--border);
+      box-shadow: var(--shadow);
+      background:#fff;
+      min-height:420px;
+    }
+    .media-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    /* Routine section - panel fond un peu plus grisé */
+    .panel{
+      background:rgba(0,0,0,0.04);
+      border-top:1px solid rgba(0,0,0,0.06);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+    }
+
+    .checklist{
+      margin:26px 0 28px;
+      padding:0;
+      list-style:none;
+    }
+    .checklist li{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      margin:18px 0;
+      color:rgba(0,0,0,0.52);
+      font-size:18px;
+      line-height:1.6;
+    }
+    .check{
+      width:26px;
+      height:26px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.14);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      flex:0 0 auto;
+      background:rgba(255,255,255,0.55);
+      margin-top:2px;
+    }
+    .check::before{
+      content:"✓";
+      font-size:14px;
+      color:rgba(0,0,0,0.55);
+      transform: translateY(-1px);
+    }
+
+    .btn-amazon{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:14px 22px;
+      background:var(--amazon);
+      color:#3a2a06;
+      text-decoration:none;
+      font-weight:600;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      transition: background .2s ease, transform .2s ease;
+    }
+    .btn-amazon:hover{
+      background:var(--amazonHover);
+      transform: translateY(-1px);
+    }
+
+    /* EMAIL SECTION */
+    .email-wrap{
+      text-align:center;
+      max-width:980px;
+      margin:0 auto;
+    }
+
+    .email-form{
+      margin:26px auto 0;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+
+    .input{
+      width:min(520px, 92vw);
+      height:52px;
+      padding:0 18px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.14);
+      background:rgba(255,255,255,0.65);
+      outline:none;
+      font-size:16px;
+    }
+    .input::placeholder{ color:rgba(0,0,0,0.35); }
+
+    .btn-ghost{
+      height:52px;
+      padding:0 22px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.08);
+      background:rgba(0,0,0,0.08);
+      color:rgba(0,0,0,0.55);
+      font-weight:600;
+      cursor:pointer;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .btn-ghost:hover{
+      background:rgba(0,0,0,0.11);
+      transform: translateY(-1px);
+    }
+
+    /* Footer icons (placeholders) */
+    .social{
+      margin-top:46px;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:center;
+    }
+    .social a{
+      width:40px;
+      height:40px;
+      border-radius:999px;
+      border:1px solid rgba(0,0,0,0.10);
+      background:rgba(255,255,255,0.55);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      color:rgba(0,0,0,0.55);
+      font-weight:700;
+      transition: transform .2s ease, background .2s ease;
+    }
+    .social a:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,0.75);
+    }
+
+    footer{
+      padding:34px 0 56px;
+      text-align:center;
+      font-size:13px;
+      color:rgba(0,0,0,0.38);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
       .hero{ grid-template-columns: 1fr; }
-      h1{ font-size:36px; }
       .hero-media{ min-height:260px; }
-      header{ margin-bottom:24px; }
-      .brand img{ height:44px; }
+      h1{ font-size:38px; }
+      .wrap{ padding-top:44px; }
+    }
+
+    @media (max-width: 900px){
+      .features{ grid-template-columns: 1fr; }
+      .feature{ padding:18px 14px; }
+      .feature:not(:last-child)::after{ display:none; }
+      .h2{ font-size:34px; }
+      .big-title{ font-size:38px; }
+      .split, .split.reverse{ grid-template-columns: 1fr; }
+      .media-card{ min-height:300px; }
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="/">
-        <img src="assets/logo.png" alt="Évosia logo" />
-      </a>
+  <div class="bg-lines">
 
-      <a class="top-cta" href="#early-access">Early access</a>
-    </header>
+    <div class="wrap">
+      <header>
+        <a class="brand" href="#top" aria-label="Évosia">
+          <img src="assets/logo.png" alt="Évosia logo" />
+        </a>
 
-    <section class="hero">
-      <div class="card">
-        <h1>Design for Skin Recovery</h1>
+        <a class="top-cta" href="#waitlist">Early access</a>
+      </header>
 
-        <div class="quote">
-          “Every scar deserves intention”
-          <span>— Évosia</span>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="card">
+          <h1>Design for Skin Recovery</h1>
+
+          <div class="quote">
+            “Every scar deserves intention”
+            <span>— Évosia</span>
+          </div>
+
+          <p class="lead">
+            Thoughtfully designed tools to support scar care, skin recovery,
+            and long-term confidence.
+          </p>
+
+          <a class="cta" href="#waitlist">Get early access</a>
+          <div class="sub">No spam. Updates only.</div>
         </div>
 
-        <p>
-          Thoughtfully designed tools to support scar care, skin recovery,
-          and long-term confidence.
-        </p>
+        <div class="hero-media" aria-label="Évosia hero image">
+          <img src="assets/hero.jpg" alt="Évosia product and lifestyle" />
+        </div>
+      </section>
+    </div>
 
-        <a id="early-access" class="cta" href="#">Get early access</a>
-        <div class="sub">No spam. Updates only.</div>
+    <!-- FEATURES SECTION -->
+    <div class="wrap">
+      <section class="section" id="benefits">
+        <div class="section-head">
+          <div class="h2">Accelerate Your Scar Recovery</div>
+          <p>
+            The Évosia Scar Roller boosts circulation, softens scar tissue, and supports visible
+            improvements in just a few weeks. Designed for post-surgery care and everyday skin
+            recovery.
+          </p>
+        </div>
+
+        <div class="features">
+          <div class="feature">
+            <div class="icon">
+              <img src="assets/icon-soften.png" alt="Soften scar tissue icon">
+            </div>
+            <h3>Soften Scar Tissue</h3>
+            <p>Break down stiffness and improve skin flexibility with targeted silicone massage.</p>
+          </div>
+
+          <div class="feature">
+            <div class="icon">
+              <img src="assets/icon-boost.png" alt="Boost circulation icon">
+            </div>
+            <h3>Boost Circulation</h3>
+            <p>Enhances micro-circulation to support faster recovery, healthier skin, and smoother appearance.</p>
+          </div>
+
+          <div class="feature">
+            <div class="icon">
+              <img src="assets/icon-routine.png" alt="Daily healing routine icon">
+            </div>
+            <h3>Daily Healing Routine Included</h3>
+            <p>Comes with a full step-by-step routine to maximize results in 3–8 weeks. Ideal for post-surgery care.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SOFTEN SECTION -->
+    <div class="wrap">
+      <section class="section slim" id="soften">
+        <div class="split">
+          <div>
+            <h2 class="big-title">Softens Scar Tissue</h2>
+            <p class="copy">
+              We create gentle, effective tools that support daily healing and smoother-looking skin.
+              <span class="spacer"></span>
+              Gentle silicone pressure breaks down stiffness and improves flexibility.
+            </p>
+          </div>
+
+          <div class="media-card" aria-label="Softens scar tissue image">
+            <img src="assets/soften.jpg" alt="Évosia scar roller product photo">
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- BOOST SECTION -->
+    <div class="wrap">
+      <section class="section slim" id="boost">
+        <div class="split reverse">
+          <div class="media-card" aria-label="Boost circulation image">
+            <img src="assets/boost.jpg" alt="Micro-circulation visual">
+          </div>
+
+          <div>
+            <h2 class="big-title">Boosts Circulation</h2>
+            <p class="copy">
+              Enhances micro-circulation to support smoother, healthier-looking skin.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ROUTINE PANEL -->
+    <div class="panel">
+      <div class="wrap">
+        <section class="section" id="routine">
+          <div class="split">
+            <div>
+              <h2 class="big-title">Daily Healing Routine Included</h2>
+              <p class="copy">
+                Comes with a full step-by-step plan to maximize your results in 3–8 weeks.
+              </p>
+
+              <ul class="checklist">
+                <li><span class="check" aria-hidden="true"></span> Helps reduce stiffness and tightness.</li>
+                <li><span class="check" aria-hidden="true"></span> Improves smoothness and elasticity over time.</li>
+                <li><span class="check" aria-hidden="true"></span> Boosts micro-circulation to support faster recovery.</li>
+              </ul>
+
+              <!-- Remplace le href par ton lien Amazon -->
+              <a class="btn-amazon" href="https://www.amazon.com/" target="_blank" rel="noopener">
+                Amazon <span aria-hidden="true">🛒</span>
+              </a>
+            </div>
+
+            <div class="media-card" aria-label="Daily routine image">
+              <img src="assets/routine.jpg" alt="Skincare routine lifestyle">
+            </div>
+          </div>
+        </section>
       </div>
+    </div>
 
-      <div class="hero-media" aria-label="Évosia hero image">
-        <img src="assets/hero.jpg" alt="Évosia product and lifestyle" />
-      </div>
-    </section>
+    <!-- WAITLIST -->
+    <div class="wrap">
+      <section class="section" id="waitlist">
+        <div class="email-wrap">
+          <div class="kicker">BEFORE LAUNCH ACCESS</div>
+          <div class="h2">Join the Évosia Recovery List</div>
+          <p>
+            Get early access to our launch, exclusive discounts, and expert scar-recovery
+            tips to help you achieve smoother-looking skin.
+          </p>
 
-    <footer>
-      © Évosia — All rights reserved
-    </footer>
+          <!-- Version simple (sans backend) :
+               1) tu peux remplacer action par un lien Brevo/Mailchimp
+               2) ou laisser comme ça (alert) en attendant -->
+          <form class="email-form" onsubmit="return handleWaitlist(event)">
+            <input class="input" type="email" id="email" placeholder="Email" required />
+            <button class="btn-ghost" type="submit">Get Notified</button>
+          </form>
+
+          <div class="social" aria-label="Social links">
+            <!-- Remplace les href par tes vrais liens -->
+            <a href="#" title="Amazon">a</a>
+            <a href="#" title="Facebook">f</a>
+            <a href="#" title="Instagram">ig</a>
+            <a href="mailto:hello@evosia.info" title="Email">@</a>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        © Évosia. All rights reserved.
+      </footer>
+    </div>
   </div>
+
+  <script>
+    function handleWaitlist(e){
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if(!email) return false;
+
+      // Option 1 (simple): ouvre un email (à remplacer par ton outil d'emailing ensuite)
+      // window.location.href = `mailto:hello@evosia.info?subject=Evosia%20Waitlist&body=${encodeURIComponent(email)}`;
+
+      // Option 2: message temporaire
+      alert("Thanks! We'll notify you at: " + email);
+
+      e.target.reset();
+      return false;
+    }
+  </script>
 </body>
 </html>
+
