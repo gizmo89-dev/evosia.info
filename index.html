@@ -49,17 +49,9 @@
     }
 
     .brand img{
-      height:36px;
+      height:48px;
       width:auto;
       display:block;
-    }
-
-    .brand-name{
-      font-weight:600;
-      letter-spacing:0.12em;
-      text-transform:uppercase;
-      font-size:14px;
-      color:var(--accent);
     }
 
     .top-cta{
@@ -90,8 +82,26 @@
     h1{
       font-size:44px;
       line-height:1.15;
-      margin:0 0 16px;
+      margin:0 0 10px;
       font-weight:600;
+    }
+
+    /* Quote under the title */
+    .quote{
+      margin:0 0 18px;
+      font-size:16px;
+      font-style:italic;
+      color:#7A7A7A;
+    }
+
+    .quote span{
+      display:block;
+      margin-top:6px;
+      font-size:14px;
+      font-style:normal;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+      color:#9A9A9A;
     }
 
     p{
@@ -151,6 +161,7 @@
       h1{ font-size:36px; }
       .hero-media{ min-height:260px; }
       header{ margin-bottom:24px; }
+      .brand img{ height:44px; }
     }
   </style>
 </head>
@@ -159,18 +170,20 @@
   <div class="wrap">
     <header>
       <a class="brand" href="/">
-        <!-- Mets ton logo ici -->
         <img src="assets/logo.png" alt="Évosia logo" />
-        <div class="brand-name">Évosia</div>
       </a>
 
-      <!-- CTA en haut (optionnel) -->
       <a class="top-cta" href="#early-access">Early access</a>
     </header>
 
     <section class="hero">
       <div class="card">
         <h1>Design for Skin Recovery</h1>
+
+        <div class="quote">
+          “Every scar deserves intention”
+          <span>— Évosia</span>
+        </div>
 
         <p>
           Thoughtfully designed tools to support scar care, skin recovery,
@@ -182,7 +195,6 @@
       </div>
 
       <div class="hero-media" aria-label="Évosia hero image">
-        <!-- Mets ton image ici -->
         <img src="assets/hero.jpg" alt="Évosia product and lifestyle" />
       </div>
     </section>
