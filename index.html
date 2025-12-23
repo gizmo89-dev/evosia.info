@@ -77,6 +77,13 @@
       display:block;
     }
 
+    /* sécurité : si tu ajoutes class="logo" plus tard */
+    .logo{
+      height:54px;
+      width:auto;
+      display:block;
+    }
+
     .top-cta{
       display:inline-flex;
       align-items:center;
@@ -478,24 +485,21 @@
     }
   </style>
 </head>
-<header class="site-header">
-  <img src="assets/logo.png" alt="Évosia logo" class="logo">
-</header>
 
 <body>
-  <div class="bg-lines">
+  <div class="bg-lines" id="top">
 
     <div class="wrap">
       <header>
         <a class="brand" href="#top" aria-label="Évosia">
-          <img src="assets/logo.png" alt="Évosia logo" />
+          <img src="./assets/logo.png" alt="Évosia logo" class="logo" />
         </a>
 
         <a class="top-cta" href="#waitlist">Early access</a>
       </header>
 
       <!-- HERO -->
-      <section class="hero" id="top">
+      <section class="hero">
         <div class="card">
           <h1>Design for Skin Recovery</h1>
 
@@ -514,7 +518,7 @@
         </div>
 
         <div class="hero-media" aria-label="Évosia hero image">
-          <img src="assets/hero.jpg" alt="Évosia product and lifestyle" />
+          <img src="./assets/hero.jpg" alt="Évosia product and lifestyle" />
         </div>
       </section>
     </div>
@@ -534,7 +538,7 @@
         <div class="features">
           <div class="feature">
             <div class="icon">
-              <img src="assets/icon-soften.png" alt="Soften scar tissue icon">
+              <img src="./assets/icon-soften.png" alt="Soften scar tissue icon">
             </div>
             <h3>Soften Scar Tissue</h3>
             <p>Break down stiffness and improve skin flexibility with targeted silicone massage.</p>
@@ -542,7 +546,7 @@
 
           <div class="feature">
             <div class="icon">
-              <img src="assets/icon-boost.png" alt="Boost circulation icon">
+              <img src="./assets/icon-boost.png" alt="Boost circulation icon">
             </div>
             <h3>Boost Circulation</h3>
             <p>Enhances micro-circulation to support faster recovery, healthier skin, and smoother appearance.</p>
@@ -550,7 +554,7 @@
 
           <div class="feature">
             <div class="icon">
-              <img src="assets/icon-routine.png" alt="Daily healing routine icon">
+              <img src="./assets/icon-routine.png" alt="Daily healing routine icon">
             </div>
             <h3>Daily Healing Routine Included</h3>
             <p>Comes with a full step-by-step routine to maximize results in 3–8 weeks. Ideal for post-surgery care.</p>
@@ -573,7 +577,7 @@
           </div>
 
           <div class="media-card" aria-label="Softens scar tissue image">
-            <img src="assets/soften.jpg" alt="Évosia scar roller product photo">
+            <img src="./assets/soften.jpg" alt="Évosia scar roller product photo">
           </div>
         </div>
       </section>
@@ -584,7 +588,7 @@
       <section class="section slim" id="boost">
         <div class="split reverse">
           <div class="media-card" aria-label="Boost circulation image">
-            <img src="assets/boost.jpg" alt="Micro-circulation visual">
+            <img src="./assets/boost.jpg" alt="Micro-circulation visual">
           </div>
 
           <div>
@@ -621,7 +625,7 @@
             </div>
 
             <div class="media-card" aria-label="Daily routine image">
-              <img src="assets/routine.jpg" alt="Skincare routine lifestyle">
+              <img src="./assets/routine.jpg" alt="Skincare routine lifestyle">
             </div>
           </div>
         </section>
@@ -639,16 +643,12 @@
             tips to help you achieve smoother-looking skin.
           </p>
 
-          <!-- Version simple (sans backend) :
-               1) tu peux remplacer action par un lien Brevo/Mailchimp
-               2) ou laisser comme ça (alert) en attendant -->
           <form class="email-form" onsubmit="return handleWaitlist(event)">
             <input class="input" type="email" id="email" placeholder="Email" required />
             <button class="btn-ghost" type="submit">Get Notified</button>
           </form>
 
           <div class="social" aria-label="Social links">
-            <!-- Remplace les href par tes vrais liens -->
             <a href="#" title="Amazon">a</a>
             <a href="#" title="Facebook">f</a>
             <a href="#" title="Instagram">ig</a>
@@ -661,6 +661,7 @@
         © Évosia. All rights reserved.
       </footer>
     </div>
+
   </div>
 
   <script>
@@ -668,17 +669,10 @@
       e.preventDefault();
       const email = document.getElementById('email').value.trim();
       if(!email) return false;
-
-      // Option 1 (simple): ouvre un email (à remplacer par ton outil d'emailing ensuite)
-      // window.location.href = `mailto:hello@evosia.info?subject=Evosia%20Waitlist&body=${encodeURIComponent(email)}`;
-
-      // Option 2: message temporaire
       alert("Thanks! We'll notify you at: " + email);
-
       e.target.reset();
       return false;
     }
   </script>
 </body>
 </html>
-
